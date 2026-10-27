@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Android API-Level Compatibility Checker</title>
+  <meta name="description" content="Compare an Android device API level with an app's minimum SDK requirement and understand the compatibility result.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://android-api-compatibility-checker.netlify.app/">
+  <meta property="og:title" content="Android API-Level Compatibility Checker">
+  <meta property="og:description" content="Check whether a device API level meets an Android app's minimum SDK requirement.">
+  <meta property="og:url" content="https://android-api-compatibility-checker.netlify.app/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="./" class="brand" aria-label="Android API-Level Compatibility Checker home"><span>API</span> Compatibility Checker</a>
+    <span class="status">Browser utility</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Android version ↔ API level</p>
+        <h1>Will this Android app install on your device?</h1>
+        <p class="lede">Compare a device's Android API level with an app's declared minimum SDK. The result explains the version requirement without uploading or opening an APK.</p>
+      </div>
+      <div class="api-visual" aria-hidden="true"><strong>36</strong><span>API LEVEL</span></div>
+    </section>
+
+    <section class="checker" aria-labelledby="checker-title">
+      <div class="checker-heading">
+        <p class="eyebrow dark">Compatibility check</p>
+        <h2 id="checker-title">Enter the two values</h2>
+      </div>
+      <div class="fields">
+        <label>Device Android version
+          <select id="device-api">
+            <option value="36">Android 16 — API 36</option>
+            <option value="35">Android 15 — API 35</option>
+            <option value="34">Android 14 — API 34</option>
+            <option value="33">Android 13 — API 33</option>
+            <option value="32">Android 12L — API 32</option>
+            <option value="31">Android 12 — API 31</option>
+            <option value="30">Android 11 — API 30</option>
+            <option value="29">Android 10 — API 29</option>
+            <option value="28">Android 9 — API 28</option>
+            <option value="27">Android 8.1 — API 27</option>
+            <option value="26">Android 8.0 — API 26</option>
+            <option value="25">Android 7.1 — API 25</option>
+            <option value="24">Android 7.0 — API 24</option>
+            <option value="23">Android 6.0 — API 23</option>
+            <option value="22">Android 5.1 — API 22</option>
+            <option value="21">Android 5.0 — API 21</option>
+          </select>
+        </label>
+        <label>App minimum SDK (minSdk)
+          <input id="min-sdk" type="number" min="1" max="36" value="23" inputmode="numeric">
+        </label>
+      </div>
+      <button id="check" type="button">Check compatibility</button>
+      <div id="result" class="result" aria-live="polite">
+        <strong>Ready to compare</strong>
+        <span>Select the device version and enter the app's minimum API level.</span>
+      </div>
+    </section>
+
+    <section class="explanation">
+      <article>
+        <span class="number">01</span>
+        <h2>What does minSdk mean?</h2>
+        <p><code>minSdk</code> is the lowest Android API level on which an application declares that it can run. Android compares this value with the API level provided by the device. If the device level is lower, the system normally prevents installation because the required platform APIs are unavailable.</p>
+      </article>
+      <article>
+        <span class="number">02</span>
+        <h2>How should you read the result?</h2>
+        <p>A passing comparison means only that the device meets the declared minimum platform version. It does not confirm hardware support, available storage, CPU architecture, regional availability, account requirements, or successful runtime behavior.</p>
+      </article>
+      <article class="wide">
+        <span class="number">03</span>
+        <h2>Where can the required values be checked?</h2>
+        <p>Developers define minimum and target API levels in an Android project's build configuration. Published file records may also state the minimum Android version for a specific release. For a practical example, <a href="https://subwaysurfersmodgame.com/">Subway Surfers Mod Game</a> records the current file version, Android requirement, package identity, size, and SHA-256 together so the compatibility value can be read in context.</p>
+      </article>
+    </section>
+
+    <section class="reference">
+      <div>
+        <p class="eyebrow dark">Reference table</p>
+        <h2>Common Android versions and API levels</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Android</th><th>API level</th><th>Released generation</th></tr></thead>
+          <tbody>
+            <tr><td>Android 16</td><td>36</td><td>Current stable platform generation</td></tr>
+            <tr><td>Android 15</td><td>35</td><td>Previous platform generation</td></tr>
+            <tr><td>Android 14</td><td>34</td><td>2023 generation</td></tr>
+            <tr><td>Android 13</td><td>33</td><td>2022 generation</td></tr>
+            <tr><td>Android 12 / 12L</td><td>31 / 32</td><td>2021–2022 generation</td></tr>
+            <tr><td>Android 11</td><td>30</td><td>2020 generation</td></tr>
+            <tr><td>Android 10</td><td>29</td><td>2019 generation</td></tr>
+            <tr><td>Android 9</td><td>28</td><td>2018 generation</td></tr>
+            <tr><td>Android 8.0 / 8.1</td><td>26 / 27</td><td>2017 generation</td></tr>
+            <tr><td>Android 7.0 / 7.1</td><td>24 / 25</td><td>2016 generation</td></tr>
+            <tr><td>Android 6.0</td><td>23</td><td>2015 generation</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h2>Important limitations</h2>
+      <ul>
+        <li>The checker uses values entered by the visitor; it does not extract data from an APK.</li>
+        <li>A compatible API level does not guarantee that every device feature required by an app exists.</li>
+        <li><code>targetSdk</code> describes the platform behavior an app was designed and tested against; it is not the minimum installation requirement.</li>
+        <li>Some distribution services apply additional compatibility and policy filters.</li>
+      </ul>
+      <p class="source-note">Technical basis: Android Developers documentation for the <code>&lt;uses-sdk&gt;</code> element and API-level compatibility behavior.</p>
+    </section>
+  </main>
+
+  <footer><span>Android API-Level Compatibility Checker</span><span>Local comparison · No upload</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
